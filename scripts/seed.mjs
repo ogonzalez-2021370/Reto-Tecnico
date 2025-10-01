@@ -2,11 +2,16 @@
 import Database from "better-sqlite3";
 import bcrypt from "bcryptjs";
 import path from "path";
+import fs from "fs";
 import { fileURLToPath } from "url";
 
 // Aca configuro la ruta de la base de datos
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(process.cwd(), "data", "app.db");
+// === 1) Asegurar carpeta ./data ===
+const dataDir = path.join(process.cwd(), "data");
+fs.mkdirSync(dataDir, { recursive: true });
+
+// Ruta de la BD (coincide con DATABASE_URL=file:./data/app.db)
+const dbPath = path.join(dataDir, "app.db");
 const db = new Database(dbPath);
 
 // Aca configuro pragmas para mejor performance y seguridad
