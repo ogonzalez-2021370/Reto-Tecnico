@@ -1,6 +1,4 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# === Dependencias ===
 /node_modules
 /.pnp
 .pnp.*
@@ -10,32 +8,52 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
+# === Tests ===
 /coverage
 
-# next.js
+# === Next.js ===
 /.next/
-/out/
-
-# production
+.out/
 /build
 
-# misc
-.DS_Store
-*.pem
+/.turbo
+/.swc
 
-# debug
+# === Logs / Debug ===
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
 
-# env files (can opt-in for committing if needed)
+# === Archivos de entorno ===
 .env*
+!.env.example        
 
-# vercel
+# === Base de datos (SQLite local) ===
+/data/*.db
+/data/*.db-*
+/data/*.sqlite
+/data/*.sqlite-*
+/data/*.db-shm
+/data/*.db-wal
+# Si quieres versionar un schema.sql, colócalo fuera de /data
+
+# === Vercel ===
 .vercel
 
-# typescript
+# === Sistema operativo ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# === Editores ===
+.vscode/
+.idea/
+.history/
+
+# === TypeScript (si mezclas algo de TS) ===
 *.tsbuildinfo
 next-env.d.ts
+
