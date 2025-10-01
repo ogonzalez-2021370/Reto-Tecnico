@@ -1,35 +1,16 @@
 # 📁 Sistema de Gestión de Documentos — Next.js + SQLite
 
-App de demostración enfocada en **seguridad** y buenas prácticas:
-
-- Autenticación con **JWT** en **cookie HttpOnly**
-- Hash de contraseñas con **bcrypt**
-- Protección **IDOR** y **SQL Injection**
-- Rutas protegidas con **middleware**
-- Búsqueda por título **case-insensitive**
-
----
-
-## ✨ Características principales
-
-- 🔐 **Login seguro** con JWT (cookie HttpOnly + expiración).
-- 🗂️ **Dashboard** con documentos del **usuario autenticado**.
-- 🚫 **Anti-IDOR** en `/api/documents/[id]` (solo puedes ver lo tuyo).
-- 🔎 **Búsqueda** `/api/documents/search?q=` (parametrizada y _case-insensitive_).
-- 🚪 **Logout** (invalida cookie).
-- 🧪 **Seed**: 2 usuarios y 3+ documentos por usuario.
-
----
+App de demostración enfocada en **seguridad** y buenas prácticas.
 
 ## 🧱 Stack / Tecnologías
 
-**Frontend / Fullstack**
+**Frontend**
 
 - Next.js 14/15 (App Router)
 - React 18
 - Tailwind CSS
 
-**Backend **
+**Backend**
 
 - SQLite con `better-sqlite3`
 - JWT con `jose`
@@ -40,8 +21,6 @@ App de demostración enfocada en **seguridad** y buenas prácticas:
 ## 🧩 Requisitos
 
 - Node.js LTS (18+ recomendado)
-- npm / pnpm / yarn
-- Windows, macOS o Linux
 
 ---
 
@@ -53,11 +32,13 @@ npm install
 
 # 2) Variables de entorno
 cp .env.example .env.local
-# Edita .env.local y define:
-# - JWT_SECRET (cadena aleatoria 32+ bytes)
-# - SESSION_MAX_AGE (p. ej. 3600)
-# - DATABASE_URL (default: file:./data/app.db)
-# *Nota: Para generar el JWT_SECRET ingresa en consola: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+#   Crea .env.local y define:
+# - JWT_SECRET=(cadena aleatoria 32+ bytes)
+# - SESSION_MAX_AGE=3600
+# - DATABASE_URL=file:./data/app.db)
+# - NODE_ENV=development
+# * Nota: Para generar el JWT_SECRET ingresa en consola: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+#   luego pegalo en JWT_SECRET=
 
 # 3) Inicializar base de datos con datos de prueba
 $env:TEST_USER1_USERNAME="juan.perez"
@@ -76,11 +57,12 @@ npm run dev:login
 ## ⚙️ Comandos
 
 ```bash
-npm run dev      # servidor de desarrollo
-npm run build    # build de producción
-npm run start    # servir build de producción
-npm run seed     # crea/limpia tablas y carga datos de prueba
-npm run lint     # ESLint
+npm run dev        # Servidor de desarrollo
+npm run dev:login  # Te envia directo al login
+npm run build      # Build de producción
+npm run start      # Servir build de producción
+npm run seed       # Crea/limpia tablas y carga datos de prueba
+npm run lint       # ESLint
 ```
 
 ---
@@ -106,3 +88,39 @@ npm run lint     # ESLint
 - **Sesiones stateless**: POST /api/auth/logout invalida la cookie (Max-Age=0).
   Rotar JWT_SECRET invalida todas las sesiones activas.
 - **Buenas prácticas**: Secretos en .env.local (no versionado) y plantilla pública en .env.example.
+
+---
+
+## ⚙️ Listas de dependencias y versiones
+
+- bcryptjs: Versión 3.0.2
+- better-sqlite3: Versión 12.4.1
+- jose: Versión 6.1.0
+- next: Versión 15.5.4
+- react: Versión 19.1.0
+- react-dom: Versión 19.1.0
+
+---
+
+## 🧠 Decisiones técnicas importantes
+
+- Next.js (App Router): Para rutas API en un solo proyecto, asi se simplifica el despliegue y la protección de rutas.
+- SQLite + better-sqlite3: Lo elegí por su rendimiento y simplicidad en entornos pequeños.
+- JWT con jose: Por compatibilidad ESM/WebCrypto y mantenimiento activo.
+- Sesión en cookie HttpOnly: Por su expiración doble (JWT exp + cookie Max-Age).
+- bcryptjs: Para hashear contraseñas.
+- Dummy_hash: Lo utilice para cuando el usuario no exista evitar ataques de timing (adivinando si el usuario existe midiendo tiempos de respuesta).
+- Anti-SQLi: Realice consultas parametrizadas usando placeholders (?).
+- Middleware: Para redirecciones y protección de rutas como /dashboard, /api/documents/\* y tambien para evitar que un usuario vuelva al /login sin antes haber cerrado sesión.
+- Seed seguro: El script que lee db/schema.sql no guarda contraseñas en el repositorio.
+- Variables de entorno: El .env.local es privado por lo cual no es enviado a mi repositorio, el .env.examle si lo envio como una plantilla.
+
+---
+
+## 🚧 Limitaciones y mejoras futuras
+
+- Manejar permisos: Pueden aparecer perfiles administrativos, los cuales tendran acceso a la información de todos los usuarios.
+- Recuperación de contraseña: Manejar una opción para que el usuario pueda recuperar su contraseña.
+- Limitar intentos de login: Si se intenta iniciar sesion con credenciales incorrectas muchas veces, se debe frenar esos intentos.
+- Paginación: Mejorar el desempeño cuando la cantidad de documentos aumente.
+
