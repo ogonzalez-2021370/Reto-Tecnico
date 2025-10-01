@@ -80,3 +80,16 @@ npm run lint     # ESLint
 - ***Usuario 2***: maria.garcia / SecurePass456!
   
 ---
+## ⚙️ Medidas de seguridad implementadas
+- **Hash de contraseñas (bcryptjs)**: Contraseñas almacenadas como hashes bcrypt (salt aleatoria, costo 12). Nunca en texto plano.
+- **Autenticación con JWT (jose) en cookie HttpOnly**: Token HS256 firmado en el servidor y enviado en cookie HttpOnly (no accesible por JS), SameSite=Lax y Secure en producción. Expiración doble: exp (JWT) + Max-Age (cookie) usando SESSION_MAX_AGE.
+- **Login timing-safe (anti user-enumeration)**: Si el usuario no existe, se compara contra un DUMMY_HASH para igualar tiempos y no revelar si la cuenta existe.
+- **Rutas protegidas con middleware**: Requiere sesión válida en /dashboard y /api/documents/*.
+Redirige a /login si no hay sesión y a /dashboard si ya estás autenticado e intentas /login.
+- **Anti-IDOR (control de acceso por recurso)**: En GET /api/documents/[id] se valida pertenencia (doc.user_id === session.uid); si no, envia el error 403.
+- **Anti-SQL Injection**: Consultas parametrizadas (placeholders ?) en la base de datos.
+La búsqueda usa LIKE ? con COLLATE NOCASE para ser case-insensitive sin concatenar input.
+- **Errores genéricos**: En login siempre se responde “Usuario o contraseña incorrectos”, tampoco se revela si la cuenta existe o si el token expiró.
+- **Sesiones stateless**: POST /api/auth/logout invalida la cookie (Max-Age=0).
+Rotar JWT_SECRET invalida todas las sesiones activas.
+- **Buenas prácticas**: Secretos en .env.local (no versionado) y plantilla pública en .env.example.
