@@ -1,6 +1,11 @@
 [build]
-  command = "npm ci && npm run build"
+  command = "npm ci && npm run seed && npm run build"
   publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Incluye el archivo .db dentro de las funciones (necesario para que exista en runtime)
+[[functions]]
+  included_files = ["data/**"]
+
