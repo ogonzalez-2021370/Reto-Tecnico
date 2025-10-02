@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/seed.mjs",
     "dev": "next dev",
     "dev:login": "start http://localhost:3000/login && next dev",
     "build": "next build",
