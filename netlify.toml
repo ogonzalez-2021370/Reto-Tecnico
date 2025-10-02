@@ -2,14 +2,11 @@
   command = "npm ci && npm run seed && npm run build"
   publish = ".next"
 
-#  Plugin oficial de Next.js
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [functions]
-  # Incluye la carpeta data dentro del bundle de las serverless
   included_files = ["data/**"]
-  # Opcional, pero ayuda con módulos nativos
   node_bundler = "esbuild"
   external_node_modules = ["better-sqlite3"]
 
