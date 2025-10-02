@@ -1,6 +1,6 @@
 # 📁 Aplicación de Gestión de Documentos — Next.js + SQLite
 
-App de demostración enfocada en **seguridad y buenas prácticas.**
+Aplicación de demostración enfocada en **seguridad y buenas prácticas.**
 
 ## 🧱 Stack / Tecnologías
 
@@ -38,7 +38,7 @@ cp .env.example .env.local
 # - DATABASE_URL=file:./data/app.db)
 # - NODE_ENV=development
 # * Nota: Para generar el JWT_SECRET ingresa en consola: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
-#   luego pegalo en JWT_SECRET=
+#   Luego pegalo en JWT_SECRET=
 
 # 3) Inicializar base de datos con datos de prueba
 $env:TEST_USER1_USERNAME="juan.perez"
@@ -128,4 +128,4 @@ npm run lint       # ESLint
 
 ## 📸 Capturas de la aplicación
 
-- [📥 Descargar PDF con capturas de la aplicación](capturas%20aplicacion/Capturas%20de%20pantalla%20de%20la%20aplicacion.pdf)
+- [📥 Visualizar PDF con capturas de la aplicación](capturas%20aplicacion/Capturas%20de%20pantalla%20de%20la%20aplicacion.pdf)
