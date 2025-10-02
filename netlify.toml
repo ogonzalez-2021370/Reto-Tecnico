@@ -2,7 +2,7 @@
   command = "npm ci && npm run seed && npm run build"
   publish = ".next"
 
-# 🔌 Plugin oficial de Next.js
+#  Plugin oficial de Next.js
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
