@@ -40,7 +40,7 @@ cp .env.example .env.local
 # * Nota: Para generar el JWT_SECRET ingresa en consola: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 #   Luego pegalo en JWT_SECRET=
 
-# 3) Inicializar base de datos con datos de prueba
+# 3) Para inicializar base de datos con datos de prueba, copia lo siguiente completo en la terminal
 $env:TEST_USER1_USERNAME="juan.perez"
 $env:TEST_USER1_PASSWORD="SecurePass123!"
 $env:TEST_USER2_USERNAME="maria.garcia"
@@ -60,9 +60,7 @@ npm run dev:login
 npm run dev        # Servidor de desarrollo
 npm run dev:login  # Te envia directo al login
 npm run build      # Build de producción
-npm run start      # Servir build de producción
 npm run seed       # Crea/limpia tablas y carga datos de prueba
-npm run lint       # ESLint
 ```
 
 ---
@@ -129,3 +127,18 @@ npm run lint       # ESLint
 ## 📸 Capturas de la aplicación
 
 - [📥 Visualizar PDF con capturas de la aplicación](capturas%20aplicacion/Capturas%20de%20pantalla%20de%20la%20aplicacion.pdf)
+
+---
+
+## 🚀 Demo en producción (Render)
+
+La aplicación la desplegue en **Render**:
+
+**URL:** https://reto-tecnico-x64m.onrender.com/login
+
+Credenciales de prueba:
+
+- **Usuario:** `juan.perez` — **Contraseña:** `SecurePass123!`
+- **Usuario:** `maria.garcia` — **Contraseña:** `SecurePass456!`
+
+---
