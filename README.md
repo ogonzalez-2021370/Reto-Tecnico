@@ -1,6 +1,6 @@
-# 📁 Sistema de Gestión de Documentos — Next.js + SQLite
+# 📁 Aplicación de Gestión de Documentos — Next.js + SQLite
 
-App de demostración enfocada en **seguridad** y buenas prácticas.
+App de demostración enfocada en **seguridad y buenas prácticas.**
 
 ## 🧱 Stack / Tecnologías
 
@@ -54,7 +54,7 @@ npm run dev:login
 
 ---
 
-## ⚙️ Comandos
+## 💻 Comandos
 
 ```bash
 npm run dev        # Servidor de desarrollo
@@ -67,14 +67,14 @@ npm run lint       # ESLint
 
 ---
 
-## ⚙️ Credenciales de prueba
+## 🔑 Credenciales de prueba
 
-- **_Usuario 1_**: juan.perez / SecurePass123!
-- **_Usuario 2_**: maria.garcia / SecurePass456!
+- 👤 **_Usuario 1_**: juan.perez / SecurePass123!
+- 👤 **_Usuario 2_**: maria.garcia / SecurePass456!
 
 ---
 
-## ⚙️ Medidas de seguridad implementadas
+## 🛡️ Medidas de seguridad implementadas
 
 - **Hash de contraseñas (bcryptjs)**: Contraseñas almacenadas como hashes bcrypt (salt aleatoria, costo 12). Nunca en texto plano.
 - **Autenticación con JWT (jose) en cookie HttpOnly**: Token HS256 firmado en el servidor y enviado en cookie HttpOnly (no accesible por JS), SameSite=Lax y Secure en producción. Expiración doble: exp (JWT) + Max-Age (cookie) usando SESSION_MAX_AGE.
@@ -91,7 +91,7 @@ npm run lint       # ESLint
 
 ---
 
-## ⚙️ Listas de dependencias y versiones
+## 📚 Listas de dependencias y versiones
 
 - **bcryptjs**: Versión 3.0.2
 - **better-sqlite3**: Versión 12.4.1
@@ -117,9 +117,15 @@ npm run lint       # ESLint
 
 ---
 
-## 🚧 Limitaciones y mejoras futuras
+## 🚧 Limitaciones y futuras mejoras
 
 - **Manejar permisos**: Pueden aparecer perfiles administrativos, los cuales tendran acceso a la información de todos los usuarios.
 - **Recuperación de contraseña**: Manejar una opción para que el usuario pueda recuperar su contraseña.
 - **Limitar intentos de login**: Si se intenta iniciar sesion con credenciales incorrectas muchas veces, se debe frenar esos intentos.
 - **Paginación**: Mejorar el desempeño cuando la cantidad de documentos aumente.
+
+---
+
+## 📸 Capturas de la aplicación
+
+- [📥 Descargar PDF con capturas de la aplicación](capturas%20aplicacion/Capturas%20de%20pantalla%20de%20la%20aplicacion.pdf)
