@@ -11,20 +11,20 @@
     "seed": "node scripts/seed.mjs"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4",
     "bcryptjs": "^3.0.2",
     "better-sqlite3": "^12.4.1",
     "jose": "^6.1.0",
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "tailwindcss": "^4",
     "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@netlify/plugin-nextjs": "^5.13.4",
-    "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.5.4",
-    "tailwindcss": "^4"
+    "eslint-config-next": "15.5.4"
   }
 }
