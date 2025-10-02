@@ -93,34 +93,33 @@ npm run lint       # ESLint
 
 ## ⚙️ Listas de dependencias y versiones
 
-- bcryptjs: Versión 3.0.2
-- better-sqlite3: Versión 12.4.1
-- jose: Versión 6.1.0
-- next: Versión 15.5.4
-- react: Versión 19.1.0
-- react-dom: Versión 19.1.0
+- **bcryptjs**: Versión 3.0.2
+- **better-sqlite3**: Versión 12.4.1
+- **jose**: Versión 6.1.0
+- **next**: Versión 15.5.4
+- **react**: Versión 19.1.0
+- **react-dom**: Versión 19.1.0
 
 ---
 
 ## 🧠 Decisiones técnicas importantes
 
-- Next.js (App Router): Para rutas API en un solo proyecto, asi se simplifica el despliegue y la protección de rutas.
-- SQLite + better-sqlite3: Lo elegí por su rendimiento y simplicidad en entornos pequeños.
-- JWT con jose: Por compatibilidad ESM/WebCrypto y mantenimiento activo.
-- Sesión en cookie HttpOnly: Por su expiración doble (JWT exp + cookie Max-Age).
-- bcryptjs: Para hashear contraseñas.
-- Dummy_hash: Lo utilice para cuando el usuario no exista evitar ataques de timing (adivinando si el usuario existe midiendo tiempos de respuesta).
-- Anti-SQLi: Realice consultas parametrizadas usando placeholders (?).
-- Middleware: Para redirecciones y protección de rutas como /dashboard, /api/documents/\* y tambien para evitar que un usuario vuelva al /login sin antes haber cerrado sesión.
-- Seed seguro: El script que lee db/schema.sql no guarda contraseñas en el repositorio.
-- Variables de entorno: El .env.local es privado por lo cual no es enviado a mi repositorio, el .env.examle si lo envio como una plantilla.
+- **Next.js (App Router)**: Para rutas API en un solo proyecto, asi se simplifica el despliegue y la protección de rutas.
+- **SQLite + better-sqlite3**: Lo elegí por su rendimiento y simplicidad en entornos pequeños.
+- **JWT con jose**: Por compatibilidad ESM/WebCrypto y mantenimiento activo.
+- **Sesión en cookie HttpOnly**: Por su expiración doble (JWT exp + cookie Max-Age).
+- **bcryptjs**: Para hashear contraseñas.
+- **Dummy_hash**: Lo utilice para cuando el usuario no exista evitar ataques de timing (adivinando si el usuario existe midiendo tiempos de respuesta).
+- **Anti-SQLi**: Realice consultas parametrizadas usando placeholders (?).
+- **Middleware**: Para redirecciones y protección de rutas como /dashboard, /api/documents/\* y tambien para evitar que un usuario vuelva al /login sin antes haber cerrado sesión.
+- **Seed seguro**: El script que lee db/schema.sql no guarda contraseñas en el repositorio.
+- **Variables de entorno**: El .env.local es privado por lo cual no es enviado a mi repositorio, el .env.examle si lo envio como una plantilla.
 
 ---
 
 ## 🚧 Limitaciones y mejoras futuras
 
-- Manejar permisos: Pueden aparecer perfiles administrativos, los cuales tendran acceso a la información de todos los usuarios.
-- Recuperación de contraseña: Manejar una opción para que el usuario pueda recuperar su contraseña.
-- Limitar intentos de login: Si se intenta iniciar sesion con credenciales incorrectas muchas veces, se debe frenar esos intentos.
-- Paginación: Mejorar el desempeño cuando la cantidad de documentos aumente.
-
+- **Manejar permisos**: Pueden aparecer perfiles administrativos, los cuales tendran acceso a la información de todos los usuarios.
+- **Recuperación de contraseña**: Manejar una opción para que el usuario pueda recuperar su contraseña.
+- **Limitar intentos de login**: Si se intenta iniciar sesion con credenciales incorrectas muchas veces, se debe frenar esos intentos.
+- **Paginación**: Mejorar el desempeño cuando la cantidad de documentos aumente.
