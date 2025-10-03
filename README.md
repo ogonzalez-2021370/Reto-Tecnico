@@ -142,3 +142,10 @@ Credenciales de prueba:
 - **Usuario:** `maria.garcia` — **Contraseña:** `SecurePass456!`
 
 ---
+
+### 🔐 Seguridad en despliegue (Render)
+
+- Secretos y configuración se manejan mediante **variables de entorno**.
+- La base de datos SQLite vive en un disco persistente (`/data`) provisto por Render, no en el repositorio.
+- En el arranque, un script verifica la BD y siembra datos de prueba solo si está vacía (evita duplicados y mantiene mi repositorio limpio).
+- Beneficios: El archivo `.db` no se expone y la app conserva los datos entre reinicios.
